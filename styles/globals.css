@@ -1,0 +1,16 @@
+html,
+body {
+   padding: 0;
+   margin: 0;
+   font-family: 'Inter', sans-serif;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+.custom-icon {
+   font-size: 24px;
+   color: #555;
+   margin-right: 8px; /* Contoh jarak dengan teks */
+}

@@ -1,0 +1,57 @@
+export const columns = [
+  { name: 'NAME', uid: 'name' },
+  { name: 'EMAIL', uid: 'email' },
+  { name: 'ADDRESS', uid: 'address' },
+  { name: 'POSTAL CODE', uid: 'postalCode' },
+  { name: 'PHONE', uid: 'phone' },
+  { name: 'STATUS', uid: 'status' },
+  { name: 'ACTIONS', uid: 'actions' },
+];
+
+export const data = [
+  {
+    id: 1,
+    name: 'Alex',
+    email: 'alex@example.com',
+    address: 'Jakarta',
+    postalCode : 12345,
+    phone: '+1234567890',
+    status: 'active',
+  },
+  {
+    id: 2,
+    name: 'Tyo',
+    email: 'tyo@example.com',
+    address: 'Bandung',
+    postalCode : 12345,
+    phone: '+0987654321',
+    status: 'active',
+  },
+  {
+    id: 3,
+    name: 'Naufal',
+    email: 'naufalr@example.com',
+    address: 'Bandung',
+    postalCode : 12345,
+    phone: '+1122334455',
+    status: 'active',
+  },
+  {
+    id: 4,
+    name: 'Hizas',
+    email: 'hizas@example.com',
+    address: 'Lombok',
+    postalCode : 12345,
+    phone: '+5544332211',
+    status: 'active',
+  },
+  {
+    id: 5,
+    name: 'Frengky',
+    email: 'frengky@example.com',
+    address: 'Bandung',
+    postalCode : 12345,
+    phone: '+9988776655',
+    status: 'inactive',
+  },
+];
