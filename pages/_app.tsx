@@ -3,6 +3,8 @@ import type { AppProps } from 'next/app';
 import { createTheme, NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { Layout } from '../components/layout/layout';
+import { Provider } from 'react-redux';
+import store from '../store';
 
 const lightTheme = createTheme({
    type: 'light',
@@ -20,21 +22,23 @@ const darkTheme = createTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
    return (
-      <NextThemesProvider
-         defaultTheme="system"
-         attribute="class"
-         value={{
-            light: lightTheme.className,
-            dark: darkTheme.className,
-         }}
-      >
-         <NextUIProvider>
-            {/* Set isAdmin to false for customer default */}
-            <Layout isAdmin={false}>
-               <Component {...pageProps} />
-            </Layout>
-         </NextUIProvider>
-      </NextThemesProvider>
+      <Provider store={store}>
+         <NextThemesProvider
+            defaultTheme="system"
+            attribute="class"
+            value={{
+               light: lightTheme.className,
+               dark: darkTheme.className,
+            }}
+         >
+            <NextUIProvider>
+               {/* Set isAdmin to false for customer default */}
+               <Layout isAdmin={false}>
+                  <Component {...pageProps} />
+               </Layout>
+            </NextUIProvider>
+         </NextThemesProvider>
+      </Provider>
    );
 }
 

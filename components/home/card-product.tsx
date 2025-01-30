@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card, Text, Image, Button, Row, Col } from '@nextui-org/react';
-import { placeOrder } from '../../services/orderService';
-import { toast } from 'react-toastify'; // Gunakan toast untuk notifikasi pengguna
+import { useDispatch, useSelector } from 'react-redux';
+import { placeOrderRequest } from '../../store/orderSlice';
+import { RootState } from '../../store';
 
 interface CardProductProps {
    name: string;
@@ -10,26 +11,12 @@ interface CardProductProps {
 }
 
 export const CardProduct = ({ name, price, imageUrl }: CardProductProps) => {
-   const [quantity, setQuantity] = useState(1);
-   const [loading, setLoading] = useState(false);
+   const dispatch = useDispatch();
+   const isLoading = useSelector((state: RootState) => state.order.isLoading);
 
-   const handleBuyNow = async () => {
-      const orderData = {
-         productName: name,
-         price,
-         quantity,
-         total: price * quantity,
-      };
-
-      setLoading(true);
-      try {
-         await placeOrder(orderData);
-         toast.success('Order placed successfully!');
-      } catch (error) {
-         toast.error('Failed to place order');
-      } finally {
-         setLoading(false);
-      }
+   const handleBuyNow = () => {
+      const orderData = { name, price };
+      dispatch(placeOrderRequest(orderData));
    };
 
    return (
@@ -43,23 +30,21 @@ export const CardProduct = ({ name, price, imageUrl }: CardProductProps) => {
                objectFit="cover"
                css={{ borderRadius: '$md' }}
             />
-            <Text h4 css={{ textAlign: 'left', mt: '$4' }}>{name}</Text>
+            <Text h4 css={{ textAlign: 'left', mt: '$4' }}>
+               {name}
+            </Text>
             <Text css={{ textAlign: 'left', fontWeight: 'bold' }}>${price}</Text>
          </Card.Body>
          <Card.Footer>
-            <Row justify="center" css={{ w: '100%', gap: '$2' }}>
-               <Col span={5}>
-                  <Button auto fullWidth bordered>Add to Cart</Button>
+            <Row justify="center">
+               <Col>
+                  <Button auto bordered color="primary">
+                     Add to Cart
+                  </Button>
                </Col>
-               <Col span={5} css={{ textAlign: 'right', marginLeft: 'auto' }}>
-                  <Button
-                     auto
-                     fullWidth
-                     color="gradient"
-                     onClick={handleBuyNow}
-                     disabled={loading}
-                  >
-                     {loading ? 'Processing...' : 'Buy Now'}
+               <Col>
+                  <Button auto color="secondary" onClick={handleBuyNow} disabled={isLoading}>
+                     {isLoading ? 'Processing...' : 'Buy Now'}
                   </Button>
                </Col>
             </Row>
