@@ -24,8 +24,6 @@ import {WarehousesIcon} from '../icons/sidebar/warehouses-icon';
 import {OrdersIcon} from '../icons/sidebar/orders-icon';
 import {useRouter} from 'next/router';
 
-//import WarehouseIcon from '@mui/icons-material/Warehouse';
-
 export const SidebarWrapper = () => {
    const router = useRouter();
    const {collapsed, setCollapsed} = useSidebarContext();

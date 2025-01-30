@@ -1,8 +1,8 @@
 import '../styles/globals.css';
-import type {AppProps} from 'next/app';
-import {createTheme, NextUIProvider} from '@nextui-org/react';
-import {ThemeProvider as NextThemesProvider} from 'next-themes';
-import {Layout} from '../components/layout/layout';
+import type { AppProps } from 'next/app';
+import { createTheme, NextUIProvider } from '@nextui-org/react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { Layout } from '../components/layout/layout';
 
 const lightTheme = createTheme({
    type: 'light',
@@ -18,7 +18,7 @@ const darkTheme = createTheme({
    },
 });
 
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
    return (
       <NextThemesProvider
          defaultTheme="system"
@@ -29,7 +29,8 @@ function MyApp({Component, pageProps}: AppProps) {
          }}
       >
          <NextUIProvider>
-            <Layout>
+            {/* Set isAdmin to false for customer default */}
+            <Layout isAdmin={false}>
                <Component {...pageProps} />
             </Layout>
          </NextUIProvider>
